@@ -3,7 +3,12 @@ import java.lang.*;
 import java.io.*;
 
 class Basic{
-
+	public static void print(int n){
+		System.out.println(n);
+	}
+	public static void print(String s){
+		System.out.println(s);
+	}
 	public static void main(String [] arg){
 		Scanner in = new Scanner(System.in);
 		int a, b, c = 5;
@@ -20,12 +25,25 @@ class Basic{
 		if(flag){
 			System.out.println(s.toUpperCase()+" "+s.toLowerCase());
 		}
+		else{
+			print("you enter something else");
+		}
 		for(int  i = b ;i<= c;i++)
 		{
 			float data = (float) i/c;
 			System.out.print(String.format("%.2f ",data));
 		}
-
+		print("\nenter a number: ");
+		int n = in.nextInt();
+		int [] ar = new int[n];
+		print(String.format("enter %d numbers: ",n));
+		int sm = 0;
+		for(int i =0;i<n;i++)
+		{
+			ar[i]= in.nextInt();
+			sm += Math.abs(ar[i]);
+		}
+		print(sm);
 
 	}
 }
