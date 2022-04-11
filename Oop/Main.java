@@ -2,6 +2,13 @@ import java.lang.*;
 import java.util.*;
 import java.io.*;
 
+enum Category{
+	Electronics,
+	Groccery,
+	Fasion,
+	HouseHolds,
+	Other
+}
 class MyExpection extends Exception{
 	public MyExpection(String s){
 		super(s);
@@ -21,6 +28,7 @@ class Product implements StockManage{
 	String type, name;
 	float price;
 	int count;
+	Category cat;
 
 	public void addInStock(int number){
 		this.count+=number;
@@ -37,12 +45,33 @@ class Product implements StockManage{
 		this.id = new_id;
 		new_id +=1;
 		this.count = 0;
+		this.cat = Category.Other;
 	}
 	int getId(){
 		return this.id;
 	}
 	int getCount(){
 		return this.count;
+	}
+	String getCategory(){
+		switch(this.cat){
+			case Electronics:
+				return "Electronics";
+				
+			case Groccery:
+				return "Groccery";
+				
+			case Fasion:
+				return "Fasion";
+				
+			case HouseHolds:
+				return "HouseHolds";
+				
+			case Other:
+				return "Other";
+				
+		}
+		return "Undifined";
 	}
 	void setDetails(String name, String type, float price){
 		this.name = name;
@@ -61,7 +90,7 @@ class Product implements StockManage{
 class Phone extends Product{
 	String company;
 	Phone(){
-
+		this.cat = Category.Electronics;
 	}
 	void setDetails(String name, String type, String company, float price){
 		this.name = name;
@@ -82,10 +111,12 @@ class Main{
 		Product charger = new Product();
 		charger.setDetails("iphone charger", "charger", 400);
 		charger.showDetails();
+		System.out.println(charger.getCategory());
 
 		Phone iphone = new Phone();
 		iphone.setDetails("iphone X", "mobile","apple", 300000);
 		iphone.showDetails();
+		System.out.println(iphone.getCategory());
 		System.out.println(String.format("number of iphone : %d", iphone.getCount()));
 		System.out.println(iphone.getId());
 		try{
